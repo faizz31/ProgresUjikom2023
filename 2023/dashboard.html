@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="./assets/style.css">
+</head>
+<body>
+    <div class="d-wrapper">
+        <div>
+            <img
+             src="./assets/images/balap.png" 
+             alt="balap"
+             class="img">         
+            </div>
+        <div class="right">
+            <h1 class="title">Peduli Diri</h1>
+            <h3 class="sub-title">Catatan Perjalanan</h3>
+            <ul class="menu-wrapper">
+                <li class="menu-item" onclick="handleMenu('satu')">Home</li>
+                <li class="menu-item" onclick="handleMenu('dua')">Catatan Perjalanan</li>
+                <li class="menu-item" onclick="handleMenu('tiga')">Isi Data</li>
+            </ul>
+<div class="item-id  hidden item jumbotron-wrapper">
+    <div class="jumbotron">
+        <p class="description">Selamat Datang <span id= "nama_Lengkap"></span> di aplikasi peduli diri
+        </p>
+    </div>
+    <button class="btn">Isi Catatan</button>
+
+</div>
+            <div class="item-id item table-wrapper">
+            <div class="table-header">
+                <span class="table-header-text">Urutkan Berdasarakan</span>
+                <select class="table-header-select">
+                    <option value="">Tangggal</option>
+                    <option value="">Suhu Tubuh</option>
+                    <option selected value="">Lokasi</option>
+                    <option value="">Waktu</option>
+                    <option value="">Baso Basooooo</option>
+                </select>
+                <button class="button">urutkan</button>
+            </div>
+            <div class="table-body">
+                <table id="dataFromApi">
+                    <tr>
+                        <th>Tangggal</th>
+                        <th>Suhu Tubuh</th>
+                        <th>Lokasi</th>
+                        <th>Waktu</th>
+                        <th>Baso Basooooo</th>
+                    </tr>
+                    <!-- <tr>
+                        <td>31-12-2004</td>
+                        <td>-1c</td>
+                        <td>Cipancur</td>
+                        <td>00-00</td>
+                        <td>15k</td>
+                    </tr>
+                    <tr>
+                        <td>31-12-2004</td>
+                        <td>-1c</td>
+                        <td>Cibiuk</td>
+                        <td>00-01</td>
+                        <td>30k</td>
+                    </tr>
+                    <tr>
+                        <td>31-12-2004</td>
+                        <td>-1c</td>
+                        <td>Ciluwuk</td>
+                        <td>00-02</td>
+                        <td>45k</td>
+                    </tr> -->
+                </table>
+                <button class="button btn-table">Isi Catatan Perjalanan</button>
+            </div>
+            </div>
+            <div class="item-id hidden item jumbotron-wrapper">
+                <div class="jumbotron center-content">
+                    
+                    <div class="dashboard-form-wrapper">
+                        <span>Tanggal</span>
+                        <input class="d-form-input" type="date">
+                    </div>
+                    <div class="dashboard-form-wrapper">
+                        <span>Jam</span>
+                        <input class="d-form-input" type="time">
+                    </div>
+                    <div class="dashboard-form-wrapper">
+                        <span>Lokasi Yang Dikunjungi</span>
+                        <input class="d-form-input" type="text">
+                    </div>
+                    <div class="dashboard-form-wrapper">
+                        <span>Suhu Tubuh</span>
+                        <input class="d-form-input" type="number">
+                    </div>
+                    <div class="dashboard-form-wrapper button-d-form">
+                        <button class="button btn-table">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function handleMenu(param) {
+            const elBaru = document.querySelectorAll(".item");
+            console.log(param);
+
+            if(param === "satu"){
+                elBaru.forEach((elemen, index) => {
+                    if (index != 0) {
+                    elemen.classList.add("hidden")
+                    } else {
+                        elemen.classList.remove("hidden")
+                    }
+                });
+            } else if (param === "dua"){
+
+                elBaru.forEach((elemen, index) => {
+                    if (index != 1) {
+                    elemen.classList.add("hidden")
+                    } else {
+                        elemen.classList.remove("hidden")
+                    }
+                });
+
+            } else {
+                elBaru.forEach((elemen, index) => {
+                    if (index != 2) {
+                    elemen.classList.add("hidden")
+                    } else {
+                        elemen.classList.remove("hidden")
+                    }
+                });
+            }
+            console.log(elBaru);
+        }
+    </script>
+    <script>
+async function getdatafromApi(url) {
+    const datafromApi = await fetch(url);
+    console.log('data', await datafromApi.json())
+    let data = await datafromApi.json();
+  
+let dataApi ="";
+    data.forEach((element) => {
+        console.log(element.name);
+        dataApi += `
+        <tr> 
+            <td>${element.id}</td>
+            <td>${elemen.username}</td>
+            <td>${element.email}</td>
+            <td>${element.name}</td>
+        </tr>
+        `;
+    });
+    const elmenTable = document.getElementById("dataFromApi");
+    elmenTable.innerHTML += "<h1>hallo</h1>";
+}
+
+// getdatafromApi("https://jsonplaceholder.typicode.com/users")
+
+  function getNamaLengkap() {
+    const nama = localStorage.getItem("isNamaLengkap");
+    if(nama) {
+        document.getElementById("nama_Lengkap").innerHTML = nama;
+    }
+  }
+  getNamaLengkap();
+  </script>
+</body>
+</html>

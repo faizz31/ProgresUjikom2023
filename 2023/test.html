@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    
+    <div onclick="handleMenu('satu')">MENU1</div>
+    <div onclick="handleMenu('dua')">MENU2</div>
+    <div onclick="handleMenu('tiga')">MENU3</div>
+    
+    <hr />
+
+    <div class="item" id="menu1">ISI1</div>
+    <div class="item">ISI2</div>
+    <div class="item">ISI3</div>
+
+    <script>
+        function handleMenu(param) {
+            const elBaru = document.querySelectorAll(".item");
+            console.log(param);
+
+            if(param === "satu"){
+                elBaru.forEach((elemen, index) => {
+                    if (index != 0) {
+                    elemen.classList.add("hidden")
+                    } else {
+                        elemen.classList.remove("hidden")
+                    }
+                });
+            } else if (param === "dua"){
+
+                elBaru.forEach((elemen, index) => {
+                    if (index != 1) {
+                    elemen.classList.add("hidden")
+                    } else {
+                        elemen.classList.remove("hidden")
+                    }
+                });
+
+            } else {
+                elBaru.forEach((elemen, index) => {
+                    if (index != 2) {
+                    elemen.classList.add("hidden")
+                    } else {
+                        elemen.classList.remove("hidden")
+                    }
+                });
+            }
+            console.log(elBaru);
+        }
+    </script>
+</body>
+</html>
